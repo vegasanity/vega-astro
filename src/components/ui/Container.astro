@@ -1,15 +1,31 @@
 ---
-/* Container - all pages */
+/**
+ * Container UI Component
+ * 
+ * Options:
+ * - full:   full width, no max-width
+ * - container (default): max-width + center
+ */
 
 interface Props {
-    as?: string;
+  variant?: "full" | "container";
+  as?: string; // optional HTML tag
+  className?: string;
 }
 
-const {as = 'div'} = Astro.props;
+const { variant = "container", as = "div", className = "" } = Astro.props;
 const Tag = as;
 
----
+/**
+ * JS Concept: Ternary Operator
+ * - Decide CSS based on `variant`
+ */
 
-<Tag class="mx-auto w-full max-w-6xl px-4">
-    <slot/>
+const baseClass =
+  variant === "full"
+    ? "w-full"                         // FULL WIDTH
+    : "mx-auto w-full max-w-7xl px-4"; // CONTAINER WIDTH
+---
+<Tag class={`${baseClass} ${className}`}>
+  <slot />
 </Tag>

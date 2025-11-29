@@ -32,10 +32,12 @@ const {
     primaryAction,
     secondaryAction
 } = Astro.props;
+
+const alignClass = align === "center" ? "text-center items-center" : "text-left items-start";
 ---
 
 <Section variant="default" className="pt-20 pb-24">
-<div class="{`flex flex-col gap-4 ${alignClass}`}">
+ <div class={`flex flex-col gap-4 ${alignClass}`}>
     { eyebrow && (
         <p class="text-sm font-semibold uppercase text-indigo-600 tracking-wide">
             {eyebrow}

@@ -1,0 +1,68 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+    title: string;
+    description?: string;
+    image: string;
+    align?: "left" | "center";
+    primaryAction?: {label:string; href:string;}
+    secondaryAction?: {label:string; href:string;}
+}
+
+const {
+    title,
+    description,
+    image,
+    align = "center",
+    primaryAction,
+    secondaryAction
+} = Astro.props;
+
+const alignClass = align === "center" ? "items-center text-center" : "items-start text-left";
+---
+
+<div class="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+
+    <!-- Background Image -->
+    <img
+        src={image}
+        alt={title}
+        class="absolute inset-0 w-full h-full object-cover"
+    />
+
+    <!-- Overlay -->
+     <div class="absolute inset-0 bg-black/50"></div>
+
+     <!-- Content Wrapper -->
+    <div class={`absolute inset-0 flex flex-col justify-center gap-4 px-6 max-w-3xl mx-auto ${alignClass}`}>
+
+    <h1 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+      {title}
+    </h1>
+
+    {description && (
+      <p class="text-lg md:text-xl text-slate-200 drop-shadow">
+        {description}
+      </p>
+    )}
+
+    <!-- CTA Buttons -->
+    <div class="flex gap-4 mt-4"
+      class:list={[align === "center" && "justify-center"]}>
+      
+      {primaryAction && (
+        <Button variant="primary" href={primaryAction.href}>
+          {primaryAction.label}
+        </Button>
+      )}
+
+      {secondaryAction && (
+        <Button variant="secondary" href={secondaryAction.href}>
+          {secondaryAction.label}
+        </Button>
+      )}
+    </div>
+  </div>
+
+</div>
