@@ -1,0 +1,71 @@
+---
+/**
+ * HeroSection.astro
+ * 
+ * Purpose:
+ * - Main intro section of your homepage
+ * - Uses UI components (Section, Button)
+ * - Accepts flexible props (title, description, actions)
+ */
+
+import Section from "../ui/Section.astro";
+import Button from "../ui/Button.astro";
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    description?: string;
+    align?: "left" | "center";
+    primaryAction?: {
+        label: string; href: string;
+    };
+    secondaryAction?: {
+        label: string; href: string;
+    };
+}
+
+const {
+    eyebrow,
+    title,
+    description,
+    align = "left",
+    primaryAction,
+    secondaryAction
+} = Astro.props;
+---
+
+<Section variant="default" className="pt-20 pb-24">
+<div class="{`flex flex-col gap-4 ${alignClass}`}">
+    { eyebrow && (
+        <p class="text-sm font-semibold uppercase text-indigo-600 tracking-wide">
+            {eyebrow}
+        </p>
+    )}
+
+     <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">
+      {title}
+    </h1>
+
+    { description && (
+        <p class="text-lg md:text-xl text-slate-600 max-w-2xl">
+            {description}
+        </p>
+    )}
+
+    <!-- Actions  -->
+    <div class="flex gap-4 mt-6"
+        class:list={[align === "center" && "justify-center"]}>
+        {primaryAction && (
+        <Button variant="primary" href={primaryAction.href}>
+            {primaryAction.label}
+        </Button>
+        )}
+
+        {secondaryAction && (
+        <Button variant="secondary" href={secondaryAction.href}>
+            {secondaryAction.label}
+        </Button>
+        )}
+    </div>
+</div>
+</Section>
