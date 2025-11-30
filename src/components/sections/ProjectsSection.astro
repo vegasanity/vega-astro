@@ -1,24 +1,17 @@
 ---
-import Container from "../ui/Container.astro"
-import Section from "../ui/Section.astro"
-import ProjectsGrid from "../ui/ProjectsGrid.astro"
+import Container from "../ui/Container.astro";
+import Section from "../ui/Section.astro";
+import ProjectsGrid from "../ui/ProjectsGrid.astro";
+import type { Project } from "../../data/projects";
 
 interface Props {
-    projects: {
-        title:string;
-        description: string;
-        image:string;
-        href:string;
-    }[];
+  projects: Project[];
 }
 
 const { projects } = Astro.props;
 ---
 
-<!-- Section wrapper (70% Tailwind) -->
 <Section variant="default" className="relative">
-
-  <!-- Artsy divider (30% custom CSS) -->
   <div class="projects-wave"></div>
 
   <Container>
@@ -29,5 +22,4 @@ const { projects } = Astro.props;
 
     <ProjectsGrid projects={projects} />
   </Container>
-
 </Section>
