@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 /* Sections*/
+import HeroSection from '../components/sections/HeroSection.astro';
 import HeroSectionImage from '../components/sections/HeroSectionImage.astro';
 
 /* UI */
@@ -11,16 +12,19 @@ import Button from '../components/ui/Button.astro';
 ---
 
 <BaseLayout title="Home — Vega">
+ 
 
-  <HeroSectionImage
-    title="Crafting Fast & Beautiful Web Experiences"
-    description="I build websites using Astro, Vue, and modern frontend practices."
-    image="/images/hero-bg.jpg"
-    align="center"
-    primaryAction={{ label: "Explore Projects", href: "/projects" }}
-    secondaryAction={{ label: "Contact Me", href: "/contact" }}
+  <HeroSection
+    eyebrow='PRATICE SHEET'
+    title='Vega is try to ascend yow'
+    description='tailwind play, all about front-end, lets go'
+    align='left'
+    primaryAction={{label: 'Learn More', href: '/projects'}}
+    secondaryAction={{label: 'Read Articles', href: '/blog'}}
+
   />
-  
+
+
   <Section variant="default">
     <SectionHeader
       eyebrow="Welcome"

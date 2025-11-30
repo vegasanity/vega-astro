@@ -1,0 +1,38 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    image: string;
+    href: string;
+}
+
+const { title, description, image, href } = Astro.props;
+---
+
+<!-- CARD WRAPPER -->
+<a href={href} 
+  class="group block rounded-xl
+  overflow-hidden bg-white border border-slate-200
+  shadow-sm hover:shadow-lg transition-shadow"
+>
+  <!-- IMAGE WRAPPER -->
+  <div class="relative h-48 overflow-hidden">
+    <img 
+      src={image} 
+      alt={title}
+      class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+  </div>
+
+  <!-- TEXT CONTENT -->
+  <div class="p-5 flex flex-col gap-2">
+    <h3 class="text-lg font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
+      {title}
+    </h3>
+
+    <p class="text-slate-600 text-sm">
+      {description}
+    </p>
+  </div>
+
+</a>
