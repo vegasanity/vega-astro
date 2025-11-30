@@ -5,10 +5,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import HeroSectionImage from '../components/sections/HeroSectionImage.astro';
 
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
+
 /* UI */
 import Section from '../components/ui/Section.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import Button from '../components/ui/Button.astro';
+
+const sampleProjects = [
+  {
+    title: "Astro Portfolio",
+    description: "A fast and modern personal portfolio built with Astro.",
+    image: "/images/project-1.jpg",
+    href: "#"
+  },
+  {
+    title: "E-commerce Frontend",
+    description: "Responsive UI with Tailwind and dummy product data.",
+    image: "/images/project-2.jpg",
+    href: "#"
+  },
+  {
+    title: "Vue Dashboard",
+    description: "Interactive admin dashboard with charts and widgets.",
+    image: "/images/project-3.jpg",
+    href: "#"
+  }
+];
+
 ---
 
 <BaseLayout title="Home — Vega">
@@ -24,6 +48,8 @@ import Button from '../components/ui/Button.astro';
 
   />
 
+  
+  <ProjectsSection projects={sampleProjects} />
 
   <Section variant="default">
     <SectionHeader

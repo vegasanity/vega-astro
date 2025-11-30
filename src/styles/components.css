@@ -1,0 +1,9 @@
+.projects-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  background: linear-gradient(to bottom, #f0f4ff, transparent);
+  z-index: -1;
+}
