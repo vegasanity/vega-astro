@@ -14,7 +14,7 @@ const { project } = Astro.props;
 ---
 
 <a 
-  href={project.href ?? "#"}
+  href={`/projects/${project.slug}`}
   class="group block rounded-xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-shadow"
 >
   <!-- IMAGE WRAPPER -->

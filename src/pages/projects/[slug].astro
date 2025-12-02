@@ -1,0 +1,45 @@
+---
+import SidebarLayout from "../../layouts/SidebarLayout.astro";
+import { projects, type Project } from "../../data/projects";
+
+// 🔹 Type for page props
+interface Props {
+  project: Project;
+}
+
+// 🔹 Ito ang requirement ng Astro for dynamic routes
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }, // ipapasa natin diretso sa page
+  }));
+}
+
+// 🔹 Kunin natin yung project galing sa Astro.props, hindi na via find()
+const { project } = Astro.props as Props;
+---
+
+<SidebarLayout title={project.title}>
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <img
+      src={project.image}
+      alt={project.title}
+      class="w-full h-80 object-cover rounded-xl mb-8"
+    />
+
+    <h1 class="text-4xl font-bold mb-4">{project.title}</h1>
+    <p class="text-lg text-slate-700 mb-8">{project.description}</p>
+
+    {project.tags && (
+      <div class="flex gap-3 mb-12">
+        {project.tags.map(tag => (
+          <span class="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <a href="/projects" class="text-indigo-600 hover:underline">← Back</a>
+  </section>
+</SidebarLayout>

@@ -1,8 +1,25 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-
+import SidebarLayout from "../layouts/SidebarLayout.astro";
+import ProjectsSection from "../components/sections/ProjectsSection.astro";
+import { projects } from "../data/projects";
 ---
 
-<BaseLayout title="About — Vega">
-    <h1>My Projects</h1>
-</BaseLayout>
+<SidebarLayout
+  title="Projects — Vega"
+  sidebarTitle="Quick links"
+  layout="sidebar"
+  cta1={{
+    title: "Need a frontend dev?",
+    description: "I build fast, modern sites with Astro, Vue, and Tailwind.",
+    href: "/contact",
+    label: "Let's talk",
+  }}
+  cta2={{
+    title: "View featured work",
+    description: "See my favorite projects and case studies.",
+    href: "/projects",
+    label: "View projects",
+  }}
+>
+  <ProjectsSection projects={projects} />
+</SidebarLayout>

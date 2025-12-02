@@ -1,0 +1,135 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface CtaBlock {
+  title: string;
+  description?: string;
+  href?: string;
+  label?: string;
+}
+
+interface Props {
+  title?: string;
+  sidebarTitle?: string;
+  navLinks?: NavLink[];
+  layout?: "sidebar" | "fullwidth";
+  cta1?: CtaBlock;
+  cta2?: CtaBlock;
+}
+
+const {
+  title = "Page",
+  sidebarTitle = "Quick links",
+  navLinks = [
+    { label: "About", href: "/about" },
+    { label: "Projects", href: "/projects" },
+    { label: "Blog", href: "/blog" },
+  ],
+  layout = "sidebar",
+  cta1 = {
+    title: "Work with me",
+    description: "Have a project in mind? Let's build something together.",
+    href: "/contact",
+    label: "Contact me",
+  },
+  cta2 = {
+    title: "View CV",
+    description: "Check my experience, skills, and tech stack.",
+    href: "/cv",
+    label: "Download CV",
+  },
+} = Astro.props;
+
+const hasSidebar = layout === "sidebar";
+---
+
+<BaseLayout title={title}>
+  <div class="min-h-[calc(100vh-4rem)] bg-slate-50">
+    <div class={`mx-auto max-w-7xl px-4 py-10 ${hasSidebar ? "flex flex-col gap-8 md:flex-row" : ""}`}>
+
+      <!-- MAIN CONTENT (LEFT) -->
+      <main class={hasSidebar
+        ? "md:flex-1 md:pr-8"
+        : "w-full max-w-4xl mx-auto"}>
+        <slot />
+      </main>
+
+      <!-- SIDEBAR (RIGHT) -->
+      {hasSidebar && (
+        <aside class="w-full md:w-80 lg:w-96 md:border-l md:border-slate-200 md:pl-8 flex-shrink-0 space-y-8">
+
+          <!-- QUICK LINKS SECTION -->
+          <section>
+            <h2 class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">
+              {sidebarTitle}
+            </h2>
+            <nav class="flex flex-col gap-1 text-sm">
+              {navLinks.map((item) => (
+                <a
+                  href={item.href}
+                  class="px-3 py-2 rounded-md text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </section>
+
+          <!-- CTA BLOCK 1 -->
+          <section class="rounded-2xl bg-gradient-to-r from-indigo-500 to-violet-500 text-white p-5 shadow-md relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top,_#ffffff_0,_transparent_60%)]" aria-hidden="true" />
+            <div class="relative space-y-2">
+              <h3 class="text-sm font-semibold uppercase tracking-wide">
+                {cta1.title}
+              </h3>
+              {cta1.description && (
+                <p class="text-xs text-indigo-100">
+                  {cta1.description}
+                </p>
+              )}
+              {cta1.href && cta1.label && (
+                <a
+                  href={cta1.href}
+                  class="inline-flex items-center gap-1 text-xs font-medium mt-2 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors"
+                >
+                  {cta1.label}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </div>
+          </section>
+
+          <!-- CTA BLOCK 2 -->
+          <section class="rounded-2xl bg-slate-900 text-slate-50 p-5 shadow-md relative overflow-hidden">
+            <div class="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-slate-700/40" aria-hidden="true" />
+            <div class="relative space-y-2">
+              <h3 class="text-sm font-semibold uppercase tracking-wide">
+                {cta2.title}
+              </h3>
+              {cta2.description && (
+                <p class="text-xs text-slate-300">
+                  {cta2.description}
+                </p>
+              )}
+              {cta2.href && cta2.label && (
+                <a
+                  href={cta2.href}
+                  class="inline-flex items-center gap-1 text-xs font-medium mt-2 bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-full transition-colors"
+                >
+                  {cta2.label}
+                  <span aria-hidden="true">→</span>
+                </a>
+              )}
+            </div>
+          </section>
+
+        </aside>
+      )}
+    </div>
+  </div>
+</BaseLayout>
