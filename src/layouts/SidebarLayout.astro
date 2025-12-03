@@ -50,12 +50,12 @@ const hasSidebar = layout === "sidebar";
 
 <BaseLayout title={title}>
   <div class="min-h-[calc(100vh-4rem)] bg-slate-50">
-    <div class={`mx-auto max-w-7xl px-4 py-10 ${hasSidebar ? "flex flex-col gap-8 md:flex-row" : ""}`}>
+    <div class={`mx-auto max-w-7xl px-4 py-24 ${hasSidebar ? "flex flex-col gap-8 md:flex-row" : ""}`}>
 
       <!-- MAIN CONTENT (LEFT) -->
       <main class={hasSidebar
-        ? "md:flex-1 md:pr-8"
-        : "w-full max-w-4xl mx-auto"}>
+        ? "md:flex-1"
+        : "w-full mx-auto"}>
         <slot />
       </main>
 

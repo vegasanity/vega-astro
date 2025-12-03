@@ -1,7 +1,17 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import SidebarLayout from "../layouts/SidebarLayout.astro";
+import AboutSection from "../components/sections/AboutSection.astro";
 ---
 
-<BaseLayout title="About — Vega">
-  <h1>About Me</h1>
-</BaseLayout>
+<SidebarLayout
+  title="About Me — Vega"
+  sidebarTitle="Quick links"
+  navLinks={[
+    { label: "Home", href: "/" },
+    { label: "Projects", href: "/projects" },
+    { label: "Contact", href: "#" },
+  ]}
+  layout="fullwidth"
+>
+  <AboutSection />
+</SidebarLayout>
